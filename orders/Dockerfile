@@ -12,6 +12,6 @@ RUN npm install --only=production
 # Bundle app source
 COPY . .
 #Expose port for users microservice
-EXPOSE 3002
+EXPOSE 4002
 #Start server
 CMD [ "npm", "start" ]
