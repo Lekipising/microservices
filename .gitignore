@@ -1,1 +1,5 @@
 **/node_modules
+
+/users/.env
+/products/.env
+/orders/.env

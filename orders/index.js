@@ -1,12 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+var bodyParser = require("body-parser");
 
-require('dotenv').config();
+require("dotenv").config();
 
-const ordersRouter = require('./routes/orders');
-
+const ordersRouter = require("./routes/orders");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,12 +17,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const dbUri = process.env.DATABASE_URL;
 
-mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true,},() => {
-  console.log('Connected to DB');
-}).catch(err => console.log(err));
+mongoose
+  .connect(
+    dbUri,
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+    () => {
+      console.log("Connected to DB");
+    }
+  )
+  .catch((err) => console.log(err));
 
-app.use('/api/orders', ordersRouter);
+app.use("/api/orders", ordersRouter);
+
+app.get("/", (req, res) => {
+  res.send("API running!");
+});
 
 var server = app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);
 });
